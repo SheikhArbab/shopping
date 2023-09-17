@@ -33,7 +33,7 @@ const Sidebar = () => {
 
     <div
 
-      className={` ${sidebar ? 'w-full ' : ' w-0'} fixed top-0 h-screen right-0 w-full bg-[#00000038] z-30 overflow-hidden duration-500 transition-all`}>
+      className={` ${sidebar ? 'w-full ' : ' w-0'} fixed top-0 h-screen right-0  bg-[#00000038] z-30 overflow-hidden duration-500 transition-all`}>
 
       <div
 

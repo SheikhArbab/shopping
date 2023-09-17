@@ -72,7 +72,7 @@ function Productproducts() {
 
  const totalPrice = isNaN(product.price) || isNaN(cartProd.quantity)
  ? product.price 
- : parseInt(product.price) * parseInt(cartProd.quantity);
+ : product.price * cartProd.quantity
 
 
   return (
