@@ -6,27 +6,40 @@ const initialCart = {
 
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState: initialCart, // Use 'initialState' instead of 'initialCart'
+  initialState: initialCart,
   reducers: {
     addToCart: (state, action) => {
-      // Action should contain information about the product to add to the cart.
-      // You can assume action.payload has the necessary product information.
       const productToAdd = action.payload;
-      
-      // Check if the product is already in the cart
       const existingProduct = state.products.find(product => product.id === productToAdd.id);
-      
+
       if (existingProduct) {
-        // If the product is already in the cart, update its quantity.
         existingProduct.quantity += 1;
       } else {
-        // If it's not in the cart, add it with a quantity of 1.
         state.products.unshift({ ...productToAdd, quantity: 1 });
       }
     },
+    removeToCart: (state, action) => { // Changed the action name here
+      const productToRemove = action.payload;
+      const existingProduct = state.products.find(product => product.id === productToRemove.id);
+
+      if (existingProduct) {
+        existingProduct.quantity -= 1;
+      } else {
+        state.products.unshift({ ...productToRemove, quantity: 1 });
+      }
+    },
+clearCart: (state , action)=>{
+state.products = action.payload
+},
+removeProduct: (state, action) => {
+  
+  state.products = state.products.filter(product => product.id !== action.payload);
+},
+
+
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeToCart, clearCart, removeProduct } = cartSlice.actions; 
 
 export default cartSlice.reducer;

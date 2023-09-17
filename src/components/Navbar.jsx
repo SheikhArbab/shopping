@@ -7,28 +7,29 @@ import { side } from '../features/sidebar/sideSlice';
 
 export default function Navbar() {
 
-const dispatch = useDispatch()
-const handleside = () => {
+  const dispatch = useDispatch()
+  const handleside = () => {
 
-  dispatch(side(true))
-}
-
-
-
-useEffect(() => window.addEventListener('scroll' , ()=> window.scrollY > 20 ? setNavFixed(true) : setNavFixed(false)))
-
-const {cart} = useSelector(state => state)
+    dispatch(side(true))
+  }
 
 
-const [navFixed, setNavFixed] = useState(false)
+
+  useEffect(() => window.addEventListener('scroll', () => window.scrollY > 300 ? setNavFixed(true) : setNavFixed(false)))
+
+  const { cart } = useSelector(state => state)
+
+
+  const [navFixed, setNavFixed] = useState(false)
   const [menu, setMenu] = useState(false)
 
 
 
   return (
     <nav className=
-    {`${navFixed? 'fixed  ' : 'relative '}
-    z-20 items-center justify-between w-full h-14 px-10 py-10 bg-[#27282b] flex duration-300 transition-all top-0`}
+    {`${
+      navFixed ? 'fixed ' : 'relative '
+    }z-20 items-center justify-between w-full h-14 px-10 py-10 bg-[#27282b] flex top-0 transition-all duration-300 ease-in-out shadow-2xl`}
     >
       <Link to={'/'} className='text-white font-bold  capitalize text-2xl'>
         shopping
@@ -53,7 +54,7 @@ const [navFixed, setNavFixed] = useState(false)
 
 
         <ul
-          className={` ${menu ? 'h-fit p-10' : ''} duration-300   md:flex flex-col w-full left-0 h-0 overflow-hidden md:flex-row md:bg-transparent bg-[#27282b] z-10 md:static absolute right-8 top-14 md:h-14  items-center justify-end gap-5 md:gap-10 rounded-lg pe-2 me-8`}
+          className={` ${menu ? 'h-fit p-10' : ''} duration-300   md:flex flex-col w-full left-0 h-0 overflow-hidden md:flex-row md:bg-transparent bg-[#27282b] z-10 md:static absolute right-8 top-14 md:h-14  items-center justify-end gap-5 md:gap-10 rounded-lg pe-2 me-3`}
 
 
         >
@@ -78,16 +79,16 @@ const [navFixed, setNavFixed] = useState(false)
 
         </ul>
         <div onClick={handleside} >
-         
-            <i className="fa-sharp fa-solid relative fa-cart-shopping text-white text-2xl cursor-pointer">
-              <div className='text-[36%] font-semibold text-[#27282b] flex items-center justify-center absolute -top-2 -right-1 w-[18px] h-[18px] rounded-full bg-yellow-300 border-[2px] border-[#27282b]'>
-               {
+
+          <i className="fa-sharp fa-solid relative fa-cart-shopping text-white text-2xl cursor-pointer">
+            <div className='text-[36%] font-semibold text-[#27282b] flex items-center justify-center absolute -top-2 -right-1 w-[18px] h-[18px] rounded-full bg-yellow-300 border-[2px] border-[#27282b]'>
+              {
                 cart.products.length
-               }
-               
-              </div>
-            </i>
-        
+              }
+
+            </div>
+          </i>
+
         </div>
 
 
