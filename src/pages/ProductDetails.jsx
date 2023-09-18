@@ -3,19 +3,19 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from './../components/Loading';
-import { addToCart,  removeToCart } from '../features/cart/cartSlice';
+import { addToCart, removeToCart } from '../features/cart/cartSlice';
 
 
 
 function Productproducts() {
 
- const cartProduct=  useSelector((state) => state.cart).products;
+  const cartProduct = useSelector((state) => state.cart).products;
 
- 
- const handleAddCart = (product) => {
+
+  const handleAddCart = (product) => {
     dispatch(addToCart(product));
   };
-  
+
   const handleRemoveCart = (product) => {
     dispatch(removeToCart(product));
   };
@@ -30,7 +30,7 @@ function Productproducts() {
   const dispatch = useDispatch()
 
   const handleCart = (product) => {
-    
+
     dispatch(addToCart(product))
   }
 
@@ -43,7 +43,7 @@ function Productproducts() {
       const res = await axios.get('https://fakestoreapi.com/products')
       const data = res.data
       setProDb(data)
-      
+
     } catch (error) {
       console.log(error);
     }
@@ -54,25 +54,25 @@ function Productproducts() {
   useEffect(() => {
     getData();
   });
-  
-  
+
+
 
   let { title } = useParams();
 
   let product = proDb.find(f => title === f.title.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-"));
-  
+
   if (!product) {
-    return <Loading /> 
+    return <Loading />
   }
-  
- let cartProd =  cartProduct.find((f) => f.id == product.id ) 
 
- cartProd ? cartProd : cartProd = product
-  
+  let cartProd = cartProduct.find((f) => f.id == product.id)
 
- const totalPrice = isNaN(product.price) || isNaN(cartProd.quantity)
- ? product.price 
- : product.price * cartProd.quantity
+  cartProd ? cartProd : cartProd = product
+
+
+  const totalPrice = isNaN(product.price) || isNaN(cartProd.quantity)
+    ? product.price
+    : Math.round(product.price * cartProd.quantity)
 
 
   return (
@@ -152,17 +152,17 @@ function Productproducts() {
               <div className="flex flex-wrap ">
                 <span className="title-font font-medium text-2xl text-gray-900">
                   $
-                  
+
                   {totalPrice}
 
-                  </span>
-                <button  className={`flex ml-auto text-white ${cartProd ? (cartProd.quantity >= 10 ? 'text-gray-400' : '') : ''} bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded`}
-               onClick={() =>{
+                </span>
+                <button className={`flex ml-auto text-white ${cartProd ? (cartProd.quantity >= 10 ? 'bg-indigo-300' : '') : ''} bg-indigo-500 border-0 py-2 px-6 focus:outline-none rounded`}
+                  onClick={() => {
 
-                handleCart(product)
+                    handleCart(product)
 
-               }}
-               disabled={cartProd ? cartProd.quantity >= 10 : ''}
+                  }}
+                  disabled={cartProd ? cartProd.quantity >= 10 : ''}
                 >   <i className="mt-1 me-2 fa-sharp fa-solid fa-cart-shopping"></i> Add to Cart</button>
                 <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
@@ -171,31 +171,34 @@ function Productproducts() {
                 </button>
               </div>
 
-              <div className="flex items-center justify-between w-fit gap-4 mt-4">
-                      <button
-                        className={`font-semibold ${cartProd ? (cartProd.quantity >= 10 ? 'text-gray-400' : '') : ''}`}
-                        onClick={() => {
-                          handleAddCart(product);
-                        }}
-                        disabled={cartProd ? cartProd.quantity >= 10 : ''}
-                      >
-                        +
-                      </button>
+              {
 
-                      <div className="bg-gray-200 px-10 ">{cartProd.quantity}</div>
+                cartProd.quantity > 0 ? <div className="flex items-center justify-between w-fit gap-4 mt-4">
+                  <button
+                    className={`font-semibold ${cartProd ? (cartProd.quantity >= 10 ? 'text-gray-400' : '') : ''}`}
+                    onClick={() => {
+                      handleAddCart(product);
+                    }}
+                    disabled={cartProd ? cartProd.quantity >= 10 : ''}
+                  >
+                    +
+                  </button>
 
-                      <button
-              className={`font-semibold ${cartProd ? (cartProd.quantity === 1 ? 'text-gray-400' : '') : ''}`}
+                  <div className="bg-gray-200 px-10 ">{cartProd.quantity}</div>
 
-                        onClick={() => {
-                          handleRemoveCart(product);
-                        }}
-                        disabled={cartProd ?  cartProd.quantity == 1 : ''}
-                      >
-                        -
-                      </button>
+                  <button
+                    className={`font-semibold ${cartProd ? (cartProd.quantity === 1 ? 'text-gray-400' : '') : ''}`}
 
-                    </div>
+                    onClick={() => {
+                      handleRemoveCart(product);
+                    }}
+                    disabled={cartProd ? cartProd.quantity == 1 : ''}
+                  >
+                    -
+                  </button>
+
+                </div> : ''
+              }
 
             </div>
           </div>

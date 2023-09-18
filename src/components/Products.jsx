@@ -34,9 +34,9 @@ const Products = () => {
     getProudcts()
   }, [])
 
-  let cateBtn = [...new Set(products.map(cate => cate.category)), 'all'].sort()
+  let cateBtn = []
 
- 
+ isLoading ? cateBtn = [] : cateBtn = [...new Set(products.map(cate => cate.category)), 'all'].sort()
 
   const filterValue = products.filter((product) => {
     return (
@@ -110,7 +110,7 @@ const Products = () => {
                         <Link to={`/product/${productSlug}`}>
                           <div data-tooltip={`$${product.price}`} className="button">
                             <div className="button-wrapper">
-                              <div className="text">Buy Now</div>
+                              <div className="text">Price</div>
                               <span className="icon">
                                 <svg
                                   viewBox="0 0 16 16"

@@ -21,7 +21,6 @@ const AdProduct = () => {
             .required('Price is required'),
         category: Yup.string().required('Please select category'),
         image: Yup.mixed()
-        // .required('Image is required')
 
     }),
     onSubmit: (values) => {
@@ -41,25 +40,25 @@ return (
 
                 <div className="mb-6">
                     <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 ">Product title</label>
-                    <input type="text" onChange={handleChange} onBlur={handleBlur} value={values.title} id="title" name='title' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Mens Casual" required />
+                    <input type="text" onChange={handleChange} onBlur={handleBlur} value={values.title} id="title" name='title' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Mens Casual" required />
                     <p className='text-red-500 text-xs'>{touched.title && errors.title ? errors.title : ''}</p>
                 </div>
                 <div className="mb-6">
                     <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 ">Product price</label>
-                    <input onChange={handleChange} onBlur={handleBlur} value={values.price} type="number" name='price' id="price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="price" required />
+                    <input onChange={handleChange} onBlur={handleBlur} value={values.price} type="number" name='price' id="price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="price" required />
                     <p className='text-red-500 text-xs'>{touched.price && errors.price ? errors.price : ''}</p>
                 </div>
                 <div className="mb-6">
 
                     <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900 ">Product description</label>
-                    <textarea onChange={handleChange} onBlur={handleBlur} value={values.description} id="description" name='description' rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="description"></textarea>
+                    <textarea onChange={handleChange} onBlur={handleBlur} value={values.description} id="description" name='description' rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="description"></textarea>
                     <p className='text-red-500 text-xs'>{touched.description && errors.description ? errors.description : ''}</p>
                 </div>
 
 
 
                 <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 ">Select an option</label>
-                <select onChange={handleChange} onBlur={handleBlur} value={values.category} id="category" name='category' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select onChange={handleChange} onBlur={handleBlur} value={values.category} id="category" name='category' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option >Choose a category</option>
                     <option value="Women's Clothing">Women's Clothing</option>
                     <option value="Men's Clothing">Men's Clothing</option>
