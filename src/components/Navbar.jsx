@@ -29,7 +29,7 @@ export default function Navbar() {
     <nav className=
     {`${
       navFixed ? 'fixed ' : 'relative '
-    }z-20 items-center justify-between w-full h-14 px-10 py-10 bg-[#27282b] flex top-0 transition-all duration-300 ease-in-out shadow-2xl`}
+    }z-20 items-center justify-between w-full h-14 px-3 md:px-10 py-10 bg-[#27282b] flex top-0 transition-all duration-300 ease-in-out shadow-2xl`}
     >
       <Link to={'/'} className='text-white font-bold  capitalize text-2xl'>
         shopping
@@ -58,7 +58,7 @@ export default function Navbar() {
 
 
         >
-          <li className='mb-5 md:m-0'>
+          <li >
             <NavLink
               to={'/'}
               className='nav-link text-white font-semibold hover:text-yellow-300 duration-300 capitalize'
@@ -68,7 +68,7 @@ export default function Navbar() {
           </li>
 
 
-          <li>
+          <li className='my-5 md:m-0'>
             <NavLink
               to={'/adproducts'}
               className='nav-link text-white font-semibold hover:text-yellow-300 duration-300 capitalize'
@@ -76,6 +76,8 @@ export default function Navbar() {
               Add product
             </NavLink>
           </li>
+      
+      
 
         </ul>
         <div onClick={handleside} >

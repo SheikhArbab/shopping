@@ -3,7 +3,7 @@ import React from 'react';
 function ProductLoading() {
   return (
     <div className="productsWarrper flex flex-wrap gap-4 justify-center my-20  ">
-      {[...Array(20)].map((_, index) => (
+      {[...Array(20)].map((loading, index) => (
         <div key={index} className="card h-[22rem] rounded-2xl w-60 py-3 px-1 border border-gray-200 shadow animate-pulse md:p-6 dark:border-gray-700">
           <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700">
            

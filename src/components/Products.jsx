@@ -34,7 +34,9 @@ const handleCart = (product) => {
   }, [])
 
 
-  const cateBtn = [...new Set(products.map(cate => cate.category)), 'all'].sort()
+  let cateBtn = [...new Set(products.map(cate => cate.category)), 'all'].sort()
+
+isLoading ? cateBtn = [ ] : cateBtn
 
   const [selItem, setSelItem] = useState('all')
 
