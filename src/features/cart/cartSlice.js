@@ -18,7 +18,7 @@ export const cartSlice = createSlice({
         state.products.unshift({ ...productToAdd, quantity: 1 });
       }
     },
-    removeToCart: (state, action) => { // Changed the action name here
+    removeToCart: (state, action) => { 
       const productToRemove = action.payload;
       const existingProduct = state.products.find(product => product.id === productToRemove.id);
 

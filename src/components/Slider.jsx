@@ -1,86 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-function Slider() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
+const Slider = () => {
   const images = [
-    "//icms-image.slatic.net/images/ims-web/8edba14e-ad2c-48a7-8913-9166c6d07f36.jpg_1200x1200.jpg",
-    "//icms-image.slatic.net/images/ims-web/e3d7e325-bef4-4d9b-a9f5-6bcb6a37eba1.png",
-    "//icms-image.slatic.net/images/ims-web/c970ecca-f1dd-4ded-af3a-6bdbc569dd05.jpg",
-    "//icms-image.slatic.net/images/ims-web/6aab5f5c-3474-4531-9aae-d502bb695f14.jpg",
-    "//icms-image.slatic.net/images/ims-web/9efe6670-d083-40a7-86fe-5eb05b7272b0.jpg",
+    '//avatars.mds.yandex.net/i?id=ffb094e5eb354eff3a275793475e6c52c348571b-9657256-images-thumbs&n=13',
+    'https://on-desktop.com/ru/images/wp.php?path=/wps/Sport_Nike_company_logo_079985_.jpg&wp=17',
+    '//avatars.mds.yandex.net/i?id=61e7f1dc74b6de251a984f85163776fc_l-8271622-images-thumbs&ref=rim&n=13&w=1200&h=805',
+    '//avatars.mds.yandex.net/i?id=bd8c94a2870619585a4aaf95e46a7145a0ae310b-5496540-images-thumbs&n=13',
+    '//avatars.mds.yandex.net/i?id=3592d27dfadfc3f19c57a90f708a45f46866f8c0-8207729-images-thumbs&n=13',
+    '//avatars.mds.yandex.net/i?id=314d6cb0257d5608cac84b6ae0374671d632f25b-8249766-images-thumbs&n=13'
   ];
 
-  useEffect(() => {
-    // Automatically advance to the next slide every 2 seconds
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 2000);
-
-    // Clean up the interval when the component unmounts
-    return () => clearInterval(interval);
-  }, [currentSlide]);
-
-  const goToSlide = (slideIndex) => {
-    setCurrentSlide(slideIndex);
-  };
-
-  const nextSlide = () => {
-    if (currentSlide < images.length - 1) {
-      setCurrentSlide(currentSlide + 1);
-    } else {
-      // Wrap around to the first slide when at the end
-      setCurrentSlide(0);
-    }
-  };
-
-  const prevSlide = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
-    } else {
-      // Go to the last slide when at the beginning
-      setCurrentSlide(images.length - 1);
-    }
-  };
-
   return (
-    <div className="relative">
-      <div className="relative h-56 overflow-hidden  rounded-lg md:h-96">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={` ${
-              currentSlide === index ? 'block opacity-100' : 'hidden opacity-0'
-            } transition-all duration-700 ease-linear`}
-            data-carousel-item
-          >
-            <img
-              src={image}
-              className="absolute block h-[100%] md:h-full object-contain -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt={`Slide ${index + 1}`}
-            />
-          </div>
-        ))}
-      </div>
-
-      <div className="absolute z-10 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            className={`w-3 h-3 rounded-full ${
-              currentSlide === index ? 'bg-[#27282b]' : 'bg-gray-300'
-            }`}
-            aria-current={currentSlide === index}
-            aria-label={`Slide ${index + 1}`}
-            data-carousel-slide-to={index}
-            onClick={() => goToSlide(index)}
-          ></button>
-        ))}
-      </div>
-
-
-    </div>
+    <>
+      <Carousel
+        autoPlay={true}
+        infiniteLoop={true}
+        showArrows={true}
+        showThumbs={false}
+        interval={2000}
+        
+      >
+          {images.map((image, index) => (
+        <div className='w-full h-80 md:h-96 overflow-hidden'  key={index} >
+            <img className='w-full h-full object-cover object-center'src={image} />
+        </div>
+          ))}
+      </Carousel>
+    </>
   );
 }
 

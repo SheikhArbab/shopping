@@ -4,7 +4,8 @@ import Slider from './Slider'
 const Hero = () => {
   return (
     <>
-      
+
+
 <Slider/>
 
     </>
